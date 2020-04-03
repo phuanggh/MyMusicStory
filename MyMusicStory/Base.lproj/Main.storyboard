@@ -97,7 +97,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="lQw-dJ-Fli">
                                                     <rect key="frame" x="0.0" y="176" width="374" height="46"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="taK-lL-13d">
+                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="taK-lL-13d">
                                                             <rect key="frame" x="0.0" y="0.0" width="176.5" height="46"/>
                                                             <color key="backgroundColor" red="0.97647058823529409" green="0.97254901960784312" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
@@ -107,14 +107,20 @@
                                                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                                             <state key="normal" title="PLAY" image="play.fill" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="musicButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kdc-HG-Mf1"/>
+                                                            </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j12-s0-0md">
+                                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j12-s0-0md">
                                                             <rect key="frame" x="197.5" y="0.0" width="176.5" height="46"/>
                                                             <color key="backgroundColor" red="0.97647058819999999" green="0.97254901959999995" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                                             <state key="normal" title="SHUFFLE" image="shuffle" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="musicButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ltj-53-zxo"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>

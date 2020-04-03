@@ -10,6 +10,7 @@ import UIKit
 
 class PlaylistVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    var songIndex: Int?
     
     @IBOutlet weak var tableview: UITableView!
     
@@ -27,8 +28,19 @@ class PlaylistVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        songIndex = tableView.indexPathForSelectedRow?.row
         performSegue(withIdentifier: "goToMusic", sender: self)
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    
+    @IBAction func musicButtonPressed(_ sender: UIButton) {
+        if sender.tag == 1 {
+            songIndex = 0
+        } else {
+            songIndex = Int.random(in: 0 ... SongData.songList.count-1)
+        }
+        performSegue(withIdentifier: "goToMusic", sender: self)
     }
     
 
@@ -36,7 +48,7 @@ class PlaylistVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBSegueAction func segueAction(_ coder: NSCoder) -> MusicVC? {
     
         let controller = MusicVC(coder: coder)
-        controller?.songIndex = tableview.indexPathForSelectedRow?.row
+        controller?.songIndex = songIndex
         
         return controller
     }

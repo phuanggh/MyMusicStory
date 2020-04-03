@@ -34,8 +34,6 @@ class MusicVC: UIViewController {
     
     @IBOutlet var timeLabel: [UILabel]!
     
-    
-    
 
     @IBAction func volumeButtonPressed(_ sender: UIButton) {
         if sender.tag == 11 {
@@ -62,6 +60,7 @@ class MusicVC: UIViewController {
             
             playMusic()
             updateInfo()
+            getCurrentSongDuration()
             
         case 2:
             isPlaying ? player.pause() : player.play()
@@ -69,7 +68,6 @@ class MusicVC: UIViewController {
             isPlaying = !isPlaying
 
         case 3:
-            
             if songIndex == SongData.songList.count - 1 {
                 songIndex = 0
             } else {
@@ -78,6 +76,7 @@ class MusicVC: UIViewController {
 
             playMusic()
             updateInfo()
+            getCurrentSongDuration()
 
         default:
             print("playButton error")
@@ -105,12 +104,14 @@ class MusicVC: UIViewController {
         player.replaceCurrentItem(with: playItem)
         let duration = playItem.asset.duration
         let second = CMTimeGetSeconds(duration)
+        print("duration is : \(second)")
         totalTimeInSec = Int(second)
         remainingTimeInSec = Int(second)
         progressCount()
     }
     
     func progressCount() {
+        timer.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateProgressUI), userInfo: nil, repeats: true)
 
     }
