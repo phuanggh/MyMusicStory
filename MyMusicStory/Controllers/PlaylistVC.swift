@@ -20,7 +20,7 @@ class PlaylistVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath) as! SongCell
         cell.numberLabel.text = String( indexPath.row + 1)
-        cell.songNameLabel.text = SongData.songList[indexPath.row]
+        cell.songNameLabel.text = SongData.songList[indexPath.row].name
         
         return cell
     }

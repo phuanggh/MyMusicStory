@@ -211,7 +211,7 @@
                                     <constraint firstAttribute="width" secondItem="yC1-le-xCh" secondAttribute="height" id="0l8-jR-VZK"/>
                                 </constraints>
                             </imageView>
-                            <progressView opaque="NO" contentMode="bottom" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ov1-4g-b2W">
+                            <progressView opaque="NO" contentMode="bottom" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ov1-4g-b2W">
                                 <rect key="frame" x="32" y="407.5" width="350" height="3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="3" id="Gng-g4-Lce"/>
@@ -226,7 +226,7 @@
                                         <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-5:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKm-To-62c">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKm-To-62c">
                                         <rect key="frame" x="315.5" y="0.0" width="34.5" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -252,10 +252,10 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="70" translatesAutoresizingMaskIntoConstraints="NO" id="EhB-ae-OCu" userLabel="PlaySV">
-                                <rect key="frame" x="65" y="569.5" width="284" height="42.5"/>
+                                <rect key="frame" x="65" y="571" width="284" height="41"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUG-1a-DSR">
-                                        <rect key="frame" x="0.0" y="0.0" width="48" height="42.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="48" height="41"/>
                                         <state key="normal" image="backward.fill" catalog="system">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="32"/>
                                         </state>
@@ -264,8 +264,8 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JfZ-3C-qqb">
-                                        <rect key="frame" x="118" y="0.0" width="48" height="42.5"/>
-                                        <state key="normal" image="play.fill" catalog="system">
+                                        <rect key="frame" x="118" y="0.0" width="48" height="41"/>
+                                        <state key="normal" image="pause.fill" catalog="system">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="44"/>
                                         </state>
                                         <connections>
@@ -273,7 +273,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vT6-Q8-Pru">
-                                        <rect key="frame" x="236" y="0.0" width="48" height="42.5"/>
+                                        <rect key="frame" x="236" y="0.0" width="48" height="41"/>
                                         <state key="normal" image="forward.fill" catalog="system">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="32"/>
                                         </state>
@@ -286,16 +286,25 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Z4J-tI-KoP" userLabel="SoundBarSV">
                                 <rect key="frame" x="32" y="679" width="350" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3r-vg-xeX">
+                                    <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3r-vg-xeX">
                                         <rect key="frame" x="0.0" y="0.0" width="18.5" height="30"/>
                                         <state key="normal" image="speaker.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="volumeButtonPressed:" destination="APY-cI-omD" eventType="touchUpInside" id="ouc-1d-4D2"/>
+                                        </connections>
                                     </button>
                                     <slider opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="qwR-dM-YeT">
                                         <rect key="frame" x="26.5" y="0.0" width="288.5" height="31"/>
+                                        <connections>
+                                            <action selector="volumeSliderChanged:" destination="APY-cI-omD" eventType="valueChanged" id="Xhm-Hu-P6v"/>
+                                        </connections>
                                     </slider>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMc-yG-SAm">
+                                    <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMc-yG-SAm">
                                         <rect key="frame" x="323" y="0.0" width="27" height="30"/>
                                         <state key="normal" image="speaker.3.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="volumeButtonPressed:" destination="APY-cI-omD" eventType="touchUpInside" id="b0i-5S-Pv0"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -352,6 +361,9 @@
                         <outlet property="artistLabel" destination="rqQ-mX-D2s" id="Mbw-2u-SWi"/>
                         <outlet property="songImageView" destination="yC1-le-xCh" id="6lC-DB-Kn5"/>
                         <outlet property="songNameLabel" destination="8Tf-2d-VyS" id="pZp-Dz-Okv"/>
+                        <outlet property="songProgress" destination="Ov1-4g-b2W" id="SEH-h2-FgK"/>
+                        <outletCollection property="timeLabel" destination="hBa-gV-laD" collectionClass="NSMutableArray" id="YBB-ft-UIy"/>
+                        <outletCollection property="timeLabel" destination="gKm-To-62c" collectionClass="NSMutableArray" id="4rf-5g-XlD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3z-ON-hDK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -366,6 +378,7 @@
         <image name="ellipsis.circle.fill" catalog="system" width="64" height="60"/>
         <image name="forward.fill" catalog="system" width="64" height="38"/>
         <image name="icloud.and.arrow.down" catalog="system" width="64" height="56"/>
+        <image name="pause.fill" catalog="system" width="58" height="64"/>
         <image name="play.fill" catalog="system" width="58" height="64"/>
         <image name="shuffle" catalog="system" width="64" height="46"/>
         <image name="speaker.3.fill" catalog="system" width="64" height="44"/>
