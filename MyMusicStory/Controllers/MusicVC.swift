@@ -21,10 +21,9 @@ class MusicVC: UIViewController {
     
     var timer = Timer()
     
-    var currentTimeInSec: Int!
-//    var startTimeInSec = 0
-    var totalTimeInSec: Int!
-    var remainingTimeInSec: Int!
+    var currentTimeInSec: Float!
+    var totalTimeInSec: Float!
+    var remainingTimeInSec: Float!
     
     
     @IBOutlet weak var songImageView: UIImageView!
@@ -37,7 +36,7 @@ class MusicVC: UIViewController {
     
     @IBOutlet var timeLabel: [UILabel]!
     
-    // MARK: Volume Setting
+    // MARK: - Volume Setting
 
     @IBAction func volumeButtonPressed(_ sender: UIButton) {
         if sender.tag == 11 {
@@ -52,7 +51,7 @@ class MusicVC: UIViewController {
         player.volume = sliderValue
     }
     
-    // MARK: Play Music
+    // MARK: - Play Music
     @IBAction func playButtonPressed(_ sender: UIButton) {
         switch sender.tag {
             
@@ -62,11 +61,11 @@ class MusicVC: UIViewController {
             } else {
                 songIndex -= 1
             }
-            
+//            removePeriodicTimeObserver()
             playMusic()
-            updateInfo()
-//            getCurrentSongDuration()
-            addPeriodicTimeObserver()
+//            updateInfo()
+            
+//            addPeriodicTimeObserver()
             
         case 2:
             isPlaying ? player.pause() : player.play()
@@ -79,11 +78,12 @@ class MusicVC: UIViewController {
             } else {
                 songIndex += 1
             }
-
+            
+//            removePeriodicTimeObserver()
             playMusic()
-            updateInfo()
-//            getCurrentSongDuration()
-            addPeriodicTimeObserver()
+//            updateInfo()
+
+//            addPeriodicTimeObserver()
 
         default:
             print("playButton error")
@@ -92,10 +92,15 @@ class MusicVC: UIViewController {
     }
     
     func playMusic() {
+        removePeriodicTimeObserver()
         guard let fileURL = Bundle.main.url(forResource: SongData.songList[songIndex].name, withExtension: "mp3") else { return }
         playerItem = AVPlayerItem(url: fileURL)
         player.replaceCurrentItem(with: playerItem)
         player.play()
+        
+        updateInfo()
+        addPeriodicTimeObserver()
+        
     }
     
     func updateInfo() {
@@ -106,63 +111,7 @@ class MusicVC: UIViewController {
     }
     
     
-    // MARK: Music Progress
-    
-//    func getCurrentSongDuration() {
-//        guard let fileURL = Bundle.main.url(forResource: SongData.songList[songIndex].name, withExtension: "mp3") else { return }
-//        let playItem = AVPlayerItem(url: fileURL)
-//        player.replaceCurrentItem(with: playItem)
-//        let duration = playItem.asset.duration
-//        let second = CMTimeGetSeconds(duration)
-//        print("duration is : \(second)")
-////        print("test sec : \(player.currentTime().seconds)")
-//        totalTimeInSec = Int(second)
-//        remainingTimeInSec = Int(second)
-//        progressCount()
-//    }
-//
-//    func progressCount() {
-//        timer.invalidate()
-//        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (timer) in
-//            self?.updateProgressUI()
-//        })
-//
-//    }
-    
-//    @objc func updateProgressUI() {
-//        if remainingTimeInSec == 0 {
-//            timer.invalidate()
-//        } else {
-//            startTimeInSec += 1
-//            remainingTimeInSec -= 1
-//        }
-////        print(startTimeInSec, totalTimeInSec)
-//        timeLabel[0].text = timeConverter(startTimeInSec)
-//        timeLabel[1].text = "-\(timeConverter(remainingTimeInSec))"
-//        songProgress.progress = Float(startTimeInSec) / Float(totalTimeInSec)
-//    }
-    
-    func updateProgressUI() {
-        
-        if currentTimeInSec == totalTimeInSec {
-            removePeriodicTimeObserver()
-        } else {
-            remainingTimeInSec = totalTimeInSec - currentTimeInSec
-            timeLabel[0].text = timeConverter(currentTimeInSec)
-            timeLabel[1].text = "-\(timeConverter(remainingTimeInSec))"
-            songProgress.progress = Float(currentTimeInSec) / Float(totalTimeInSec)
-        }
-        
-    }
-    
-    
-    func timeConverter(_ timeInSecond: Int) -> String {
-        let minute = timeInSecond / 60
-        let second = timeInSecond % 60
-        
-        return second < 10 ? "\(minute):0\(second)" : "\(minute):\(second)"
-
-    }
+    // MARK: - Music Progress
     
     func addPeriodicTimeObserver() {
         // Notify every half second
@@ -170,22 +119,14 @@ class MusicVC: UIViewController {
         let time = CMTime(seconds: 0.5, preferredTimescale: timeScale)
 
         timeObserverToken = player.addPeriodicTimeObserver(forInterval: time, queue: .main) { [weak self] time in
-            
             let duration = self?.playerItem.asset.duration
             let second = CMTimeGetSeconds(duration!)
-            self!.totalTimeInSec = Int(second)
+            self!.totalTimeInSec = Float(second)
             
             let songCurrentTime = self?.player.currentTime().seconds
-//            print("current time: \(songCurrentTime)")
-            self!.currentTimeInSec = Int(songCurrentTime!)
+            self!.currentTimeInSec = Float(songCurrentTime!)
             
             self!.updateProgressUI()
-            
-//            self!.remainingTimeInSec = self!.totalTimeInSec - self!.currentTimeInSec
-//
-//            self!.timeLabel[0].text = self!.timeConverter(self!.currentTimeInSec)
-//            self!.timeLabel[1].text = "-\(self!.timeConverter(self!.remainingTimeInSec))"
-//            self!.songProgress.progress = Float(self!.currentTimeInSec) / Float(self!.totalTimeInSec)
             
         }
     }
@@ -197,17 +138,55 @@ class MusicVC: UIViewController {
         }
     }
     
+    func updateProgressUI() {
+        
+        if currentTimeInSec == totalTimeInSec {
+            removePeriodicTimeObserver()
+        } else {
+            remainingTimeInSec = totalTimeInSec - currentTimeInSec
+            timeLabel[0].text = timeConverter(currentTimeInSec)
+            timeLabel[1].text = "-\(timeConverter(remainingTimeInSec))"
+            songProgress.progress = currentTimeInSec / totalTimeInSec
+        }
+        
+    }
     
     
-    // MARK: viewDidLoad()
+    func timeConverter(_ timeInSecond: Float) -> String {
+        let minute = Int(timeInSecond) / 60
+        let second = Int(timeInSecond) % 60
+        
+        return second < 10 ? "\(minute):0\(second)" : "\(minute):\(second)"
+
+    }
+    
+    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         playMusic()
-        updateInfo()
-//        getCurrentSongDuration()
-        addPeriodicTimeObserver()
+//        updateInfo()
+//        addPeriodicTimeObserver()
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: .main) { (notification) in
 
+//            self.removePeriodicTimeObserver()
+                if self.songIndex == SongData.songList.count - 1 {
+                    self.songIndex = 0
+                } else {
+                    self.songIndex += 1
+                }
+//
+                self.playMusic()
+//                self.updateInfo()
+//                self.addPeriodicTimeObserver()
+            }
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        removePeriodicTimeObserver()
     }
         
     
