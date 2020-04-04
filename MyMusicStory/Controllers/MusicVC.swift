@@ -48,7 +48,7 @@ class MusicVC: UIViewController {
         player.volume = sliderValue
     }
     
-    @IBAction func playButton(_ sender: UIButton) {
+    @IBAction func playButtonPressed(_ sender: UIButton) {
         switch sender.tag {
             
         case 1:
@@ -105,6 +105,7 @@ class MusicVC: UIViewController {
         let duration = playItem.asset.duration
         let second = CMTimeGetSeconds(duration)
         print("duration is : \(second)")
+//        print("test sec : \(player.currentTime().seconds)")
         totalTimeInSec = Int(second)
         remainingTimeInSec = Int(second)
         progressCount()
@@ -112,7 +113,9 @@ class MusicVC: UIViewController {
     
     func progressCount() {
         timer.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateProgressUI), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (timer) in
+            self?.updateProgressUI()
+        })
 
     }
     

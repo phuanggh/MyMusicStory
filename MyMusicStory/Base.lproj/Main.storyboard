@@ -266,7 +266,7 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="32"/>
                                         </state>
                                         <connections>
-                                            <action selector="playButton:" destination="APY-cI-omD" eventType="touchUpInside" id="Mbx-mK-4sa"/>
+                                            <action selector="playButtonPressed:" destination="APY-cI-omD" eventType="touchUpInside" id="6Bc-MA-cjk"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JfZ-3C-qqb">
@@ -275,7 +275,7 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="44"/>
                                         </state>
                                         <connections>
-                                            <action selector="playButton:" destination="APY-cI-omD" eventType="touchUpInside" id="ZdH-8j-411"/>
+                                            <action selector="playButtonPressed:" destination="APY-cI-omD" eventType="touchUpInside" id="cwP-ah-cU8"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vT6-Q8-Pru">
@@ -284,7 +284,7 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="32"/>
                                         </state>
                                         <connections>
-                                            <action selector="playButton:" destination="APY-cI-omD" eventType="touchUpInside" id="XLX-6i-zKf"/>
+                                            <action selector="playButtonPressed:" destination="APY-cI-omD" eventType="touchUpInside" id="ZQg-WZ-nqI"/>
                                         </connections>
                                     </button>
                                 </subviews>
