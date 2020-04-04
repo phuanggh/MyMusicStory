@@ -14,6 +14,10 @@ class PlaylistVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableview: UITableView!
     
+    @IBOutlet var musicButton: [UIButton]!
+    
+    
+    // MARK: - Table View
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return SongData.songList.count
     }
@@ -34,6 +38,7 @@ class PlaylistVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     
+    // MARK: - Actions
     @IBAction func musicButtonPressed(_ sender: UIButton) {
         if sender.tag == 1 {
             songIndex = 0
@@ -53,8 +58,12 @@ class PlaylistVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return controller
     }
     
+    
+    // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
+        musicButton[0].layer.cornerRadius = musicButton[0].frame.height / 4
+        musicButton[1].layer.cornerRadius = musicButton[1].frame.height / 4
         
     }
 

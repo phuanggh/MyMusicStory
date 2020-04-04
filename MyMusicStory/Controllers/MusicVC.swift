@@ -36,6 +36,9 @@ class MusicVC: UIViewController {
     
     @IBOutlet var timeLabel: [UILabel]!
     
+    @IBOutlet var playButton: [UIButton]!
+    
+    
     // MARK: - Volume Setting
 
     @IBAction func volumeButtonPressed(_ sender: UIButton) {
@@ -61,11 +64,9 @@ class MusicVC: UIViewController {
             } else {
                 songIndex -= 1
             }
-//            removePeriodicTimeObserver()
-            playMusic()
-//            updateInfo()
             
-//            addPeriodicTimeObserver()
+            playButton[1].setImage(UIImage(systemName: "pause.fill"), for: .normal)
+            playMusic()
             
         case 2:
             isPlaying ? player.pause() : player.play()
@@ -79,11 +80,8 @@ class MusicVC: UIViewController {
                 songIndex += 1
             }
             
-//            removePeriodicTimeObserver()
+            playButton[1].setImage(UIImage(systemName: "pause.fill"), for: .normal)
             playMusic()
-//            updateInfo()
-
-//            addPeriodicTimeObserver()
 
         default:
             print("playButton error")
@@ -166,30 +164,23 @@ class MusicVC: UIViewController {
         super.viewDidLoad()
         
         playMusic()
-//        updateInfo()
-//        addPeriodicTimeObserver()
         
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: .main) { (notification) in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: .main) { [weak self] (notification) in
 
-//            self.removePeriodicTimeObserver()
-                if self.songIndex == SongData.songList.count - 1 {
-                    self.songIndex = 0
-                } else {
-                    self.songIndex += 1
-                }
-//
-                self.playMusic()
-//                self.updateInfo()
-//                self.addPeriodicTimeObserver()
+            if self?.songIndex == SongData.songList.count - 1 {
+                self?.songIndex = 0
+            } else {
+                self?.songIndex += 1
             }
+        
+            self?.playMusic()
+
+        }
 
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         removePeriodicTimeObserver()
     }
-        
-    
-
 
 }

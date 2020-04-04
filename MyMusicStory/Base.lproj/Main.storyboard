@@ -196,6 +196,8 @@
                     </view>
                     <connections>
                         <outlet property="tableview" destination="O3c-Bv-6QE" id="zQq-lk-9AE"/>
+                        <outletCollection property="musicButton" destination="taK-lL-13d" collectionClass="NSMutableArray" id="KbI-bc-e6Q"/>
+                        <outletCollection property="musicButton" destination="j12-s0-0md" collectionClass="NSMutableArray" id="aLD-fo-Q2I"/>
                         <segue destination="APY-cI-omD" kind="presentation" identifier="goToMusic" destinationCreationSelector="segueAction:" id="Epy-vo-6IA"/>
                     </connections>
                 </viewController>
@@ -342,7 +344,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="EhB-ae-OCu" firstAttribute="centerX" secondItem="q11-gh-oqi" secondAttribute="centerX" id="8yP-wv-XOH"/>
-                            <constraint firstItem="bzy-aJ-JrY" firstAttribute="trailing" secondItem="yC1-le-xCh" secondAttribute="trailing" constant="32" id="9kM-N4-dhZ"/>
+                            <constraint firstAttribute="trailing" secondItem="yC1-le-xCh" secondAttribute="trailing" constant="32" id="9kM-N4-dhZ"/>
                             <constraint firstItem="Ov1-4g-b2W" firstAttribute="centerX" secondItem="q11-gh-oqi" secondAttribute="centerX" id="Edz-qz-IjJ"/>
                             <constraint firstItem="yC1-le-xCh" firstAttribute="leading" secondItem="bzy-aJ-JrY" secondAttribute="leading" constant="32" id="Fr9-kP-hLz"/>
                             <constraint firstItem="ZGc-vl-ZRF" firstAttribute="centerX" secondItem="q11-gh-oqi" secondAttribute="centerX" id="Izu-BK-5ch"/>
@@ -370,6 +372,9 @@
                         <outlet property="songProgress" destination="Ov1-4g-b2W" id="SEH-h2-FgK"/>
                         <outletCollection property="timeLabel" destination="hBa-gV-laD" collectionClass="NSMutableArray" id="YBB-ft-UIy"/>
                         <outletCollection property="timeLabel" destination="gKm-To-62c" collectionClass="NSMutableArray" id="4rf-5g-XlD"/>
+                        <outletCollection property="playButton" destination="PUG-1a-DSR" collectionClass="NSMutableArray" id="wQj-dV-f3b"/>
+                        <outletCollection property="playButton" destination="JfZ-3C-qqb" collectionClass="NSMutableArray" id="weI-Up-CNn"/>
+                        <outletCollection property="playButton" destination="vT6-Q8-Pru" collectionClass="NSMutableArray" id="tzt-tO-Xyn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3z-ON-hDK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
