@@ -12,6 +12,8 @@ import AVFoundation
 class MusicVC: UIViewController {
     
     var player = AVPlayer()
+    var playerItem: AVPlayerItem!
+    var timeObserverToken: Any?
 
     var songIndex: Int!
     
@@ -19,7 +21,8 @@ class MusicVC: UIViewController {
     
     var timer = Timer()
     
-    var startTimeInSec = 0
+    var currentTimeInSec: Int!
+//    var startTimeInSec = 0
     var totalTimeInSec: Int!
     var remainingTimeInSec: Int!
     
@@ -34,6 +37,7 @@ class MusicVC: UIViewController {
     
     @IBOutlet var timeLabel: [UILabel]!
     
+    // MARK: Volume Setting
 
     @IBAction func volumeButtonPressed(_ sender: UIButton) {
         if sender.tag == 11 {
@@ -48,6 +52,7 @@ class MusicVC: UIViewController {
         player.volume = sliderValue
     }
     
+    // MARK: Play Music
     @IBAction func playButtonPressed(_ sender: UIButton) {
         switch sender.tag {
             
@@ -60,7 +65,8 @@ class MusicVC: UIViewController {
             
             playMusic()
             updateInfo()
-            getCurrentSongDuration()
+//            getCurrentSongDuration()
+            addPeriodicTimeObserver()
             
         case 2:
             isPlaying ? player.pause() : player.play()
@@ -76,7 +82,8 @@ class MusicVC: UIViewController {
 
             playMusic()
             updateInfo()
-            getCurrentSongDuration()
+//            getCurrentSongDuration()
+            addPeriodicTimeObserver()
 
         default:
             print("playButton error")
@@ -86,8 +93,8 @@ class MusicVC: UIViewController {
     
     func playMusic() {
         guard let fileURL = Bundle.main.url(forResource: SongData.songList[songIndex].name, withExtension: "mp3") else { return }
-        let playItem = AVPlayerItem(url: fileURL)
-        player.replaceCurrentItem(with: playItem)
+        playerItem = AVPlayerItem(url: fileURL)
+        player.replaceCurrentItem(with: playerItem)
         player.play()
     }
     
@@ -98,38 +105,54 @@ class MusicVC: UIViewController {
         artistLabel.text = currentSong.artist
     }
     
-    func getCurrentSongDuration() {
-        guard let fileURL = Bundle.main.url(forResource: SongData.songList[songIndex].name, withExtension: "mp3") else { return }
-        let playItem = AVPlayerItem(url: fileURL)
-        player.replaceCurrentItem(with: playItem)
-        let duration = playItem.asset.duration
-        let second = CMTimeGetSeconds(duration)
-        print("duration is : \(second)")
-//        print("test sec : \(player.currentTime().seconds)")
-        totalTimeInSec = Int(second)
-        remainingTimeInSec = Int(second)
-        progressCount()
-    }
     
-    func progressCount() {
-        timer.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (timer) in
-            self?.updateProgressUI()
-        })
-
-    }
+    // MARK: Music Progress
     
-    @objc func updateProgressUI() {
-        if remainingTimeInSec == 0 {
-            timer.invalidate()
+//    func getCurrentSongDuration() {
+//        guard let fileURL = Bundle.main.url(forResource: SongData.songList[songIndex].name, withExtension: "mp3") else { return }
+//        let playItem = AVPlayerItem(url: fileURL)
+//        player.replaceCurrentItem(with: playItem)
+//        let duration = playItem.asset.duration
+//        let second = CMTimeGetSeconds(duration)
+//        print("duration is : \(second)")
+////        print("test sec : \(player.currentTime().seconds)")
+//        totalTimeInSec = Int(second)
+//        remainingTimeInSec = Int(second)
+//        progressCount()
+//    }
+//
+//    func progressCount() {
+//        timer.invalidate()
+//        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (timer) in
+//            self?.updateProgressUI()
+//        })
+//
+//    }
+    
+//    @objc func updateProgressUI() {
+//        if remainingTimeInSec == 0 {
+//            timer.invalidate()
+//        } else {
+//            startTimeInSec += 1
+//            remainingTimeInSec -= 1
+//        }
+////        print(startTimeInSec, totalTimeInSec)
+//        timeLabel[0].text = timeConverter(startTimeInSec)
+//        timeLabel[1].text = "-\(timeConverter(remainingTimeInSec))"
+//        songProgress.progress = Float(startTimeInSec) / Float(totalTimeInSec)
+//    }
+    
+    func updateProgressUI() {
+        
+        if currentTimeInSec == totalTimeInSec {
+            removePeriodicTimeObserver()
         } else {
-            startTimeInSec += 1
-            remainingTimeInSec -= 1
+            remainingTimeInSec = totalTimeInSec - currentTimeInSec
+            timeLabel[0].text = timeConverter(currentTimeInSec)
+            timeLabel[1].text = "-\(timeConverter(remainingTimeInSec))"
+            songProgress.progress = Float(currentTimeInSec) / Float(totalTimeInSec)
         }
-//        print(startTimeInSec, totalTimeInSec)
-        timeLabel[0].text = timeConverter(startTimeInSec)
-        timeLabel[1].text = "-\(timeConverter(remainingTimeInSec))"
-        songProgress.progress = Float(startTimeInSec) / Float(totalTimeInSec)
+        
     }
     
     
@@ -141,13 +164,49 @@ class MusicVC: UIViewController {
 
     }
     
+    func addPeriodicTimeObserver() {
+        // Notify every half second
+        let timeScale = CMTimeScale(NSEC_PER_SEC)
+        let time = CMTime(seconds: 0.5, preferredTimescale: timeScale)
+
+        timeObserverToken = player.addPeriodicTimeObserver(forInterval: time, queue: .main) { [weak self] time in
+            
+            let duration = self?.playerItem.asset.duration
+            let second = CMTimeGetSeconds(duration!)
+            self!.totalTimeInSec = Int(second)
+            
+            let songCurrentTime = self?.player.currentTime().seconds
+//            print("current time: \(songCurrentTime)")
+            self!.currentTimeInSec = Int(songCurrentTime!)
+            
+            self!.updateProgressUI()
+            
+//            self!.remainingTimeInSec = self!.totalTimeInSec - self!.currentTimeInSec
+//
+//            self!.timeLabel[0].text = self!.timeConverter(self!.currentTimeInSec)
+//            self!.timeLabel[1].text = "-\(self!.timeConverter(self!.remainingTimeInSec))"
+//            self!.songProgress.progress = Float(self!.currentTimeInSec) / Float(self!.totalTimeInSec)
+            
+        }
+    }
+
+    func removePeriodicTimeObserver() {
+        if let timeObserverToken = timeObserverToken {
+            player.removeTimeObserver(timeObserverToken)
+            self.timeObserverToken = nil
+        }
+    }
     
+    
+    
+    // MARK: viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         playMusic()
         updateInfo()
-        getCurrentSongDuration()
+//        getCurrentSongDuration()
+        addPeriodicTimeObserver()
 
     }
         
