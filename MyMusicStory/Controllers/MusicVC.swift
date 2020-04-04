@@ -163,8 +163,18 @@ class MusicVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        playMusic()
+        let colour1 = #colorLiteral(red: 0.924761951, green: 0.2762447596, blue: 0.4667485952, alpha: 1).cgColor
+        let colour2 = #colorLiteral(red: 0.3803921569, green: 0.2901960784, blue: 0.8274509804, alpha: 1).cgColor
+        let colour3 = #colorLiteral(red: 0.07058823529, green: 0.1058823529, blue: 0.4549019608, alpha: 1).cgColor
+        let gradient = CAGradientLayer()
+        gradient.frame = view.bounds
+        gradient.colors = [colour1,colour2, colour3]
+        gradient.locations = [0, 0.5,1]
+
+        view.layer.insertSublayer(gradient, at: 0)
         
+        
+        playMusic()
         NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: .main) { [weak self] (notification) in
 
             if self?.songIndex == SongData.songList.count - 1 {
