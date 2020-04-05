@@ -229,11 +229,11 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Iv9-Ld-GXh">
                                         <rect key="frame" x="0.0" y="365" width="350" height="413"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="iBn-bD-ef6">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iBn-bD-ef6">
                                                 <rect key="frame" x="0.0" y="0.0" width="350" height="20"/>
                                                 <subviews>
                                                     <progressView opaque="NO" contentMode="bottom" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ov1-4g-b2W">
-                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="1.3333333333333333"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="2"/>
                                                         <color key="tintColor" red="0.89411764709999997" green="0.17254901959999999" blue="0.3921568627" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                                         <color key="trackTintColor" cocoaTouchSystemColor="lightTextColor"/>
                                                     </progressView>
@@ -264,7 +264,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="MDh-DK-0KL" userLabel="SongInfoSV">
-                                                <rect key="frame" x="0.0" y="87.333333333333314" width="350" height="45"/>
+                                                <rect key="frame" x="0.0" y="85.333333333333314" width="350" height="45"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Garden Shed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Tf-2d-VyS">
                                                         <rect key="frame" x="107.00000000000001" y="0.0" width="136.33333333333337" height="20.333333333333332"/>
@@ -283,47 +283,47 @@
                                                     <constraint firstAttribute="height" constant="45" id="8LC-GF-wYD"/>
                                                 </constraints>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="70" translatesAutoresizingMaskIntoConstraints="NO" id="EhB-ae-OCu" userLabel="PlaySV">
-                                                <rect key="frame" x="0.0" y="199.66666666666663" width="350" height="30"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="EhB-ae-OCu" userLabel="PlaySV">
+                                                <rect key="frame" x="0.0" y="195.66666666666663" width="350" height="38"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUG-1a-DSR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="70" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="38"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         <state key="normal" image="backward.fill" catalog="system">
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="playButtonPressed:" destination="APY-cI-omD" eventType="touchUpInside" id="6Bc-MA-cjk"/>
+                                                            <action selector="playButtonPressed:" destination="APY-cI-omD" eventType="touchUpInside" id="BOe-Yn-Ira"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JfZ-3C-qqb">
-                                                        <rect key="frame" x="140" y="0.0" width="70" height="30"/>
+                                                        <rect key="frame" x="156.66666666666666" y="0.0" width="37" height="38"/>
                                                         <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         <state key="normal" image="pause.fill" catalog="system">
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="44"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="playButtonPressed:" destination="APY-cI-omD" eventType="touchUpInside" id="cwP-ah-cU8"/>
+                                                            <action selector="playButtonPressed:" destination="APY-cI-omD" eventType="touchUpInside" id="5yI-Ng-Pqg"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vT6-Q8-Pru">
-                                                        <rect key="frame" x="280" y="0.0" width="70" height="30"/>
+                                                        <rect key="frame" x="308.66666666666669" y="0.0" width="41.333333333333314" height="38"/>
                                                         <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         <state key="normal" image="forward.fill" catalog="system">
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="playButtonPressed:" destination="APY-cI-omD" eventType="touchUpInside" id="ZQg-WZ-nqI"/>
+                                                            <action selector="playButtonPressed:" destination="APY-cI-omD" eventType="touchUpInside" id="qre-M3-BWV"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="Aav-xk-pkh"/>
+                                                    <constraint firstAttribute="height" constant="38" id="Aav-xk-pkh"/>
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Z4J-tI-KoP" userLabel="SoundBarSV">
-                                                <rect key="frame" x="0.0" y="296.66666666666663" width="350" height="22"/>
+                                                <rect key="frame" x="0.0" y="298.66666666666663" width="350" height="22"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3r-vg-xeX" userLabel="VolumeDown Button">
                                                         <rect key="frame" x="0.0" y="0.0" width="25" height="22"/>
@@ -429,11 +429,11 @@
                         <outlet property="songImageView" destination="yC1-le-xCh" id="6lC-DB-Kn5"/>
                         <outlet property="songNameLabel" destination="8Tf-2d-VyS" id="pZp-Dz-Okv"/>
                         <outlet property="songProgress" destination="Ov1-4g-b2W" id="SEH-h2-FgK"/>
-                        <outletCollection property="playButton" destination="JfZ-3C-qqb" collectionClass="NSMutableArray" id="weI-Up-CNn"/>
-                        <outletCollection property="playButton" destination="PUG-1a-DSR" collectionClass="NSMutableArray" id="wQj-dV-f3b"/>
-                        <outletCollection property="playButton" destination="vT6-Q8-Pru" collectionClass="NSMutableArray" id="tzt-tO-Xyn"/>
                         <outletCollection property="timeLabel" destination="gKm-To-62c" collectionClass="NSMutableArray" id="4rf-5g-XlD"/>
                         <outletCollection property="timeLabel" destination="hBa-gV-laD" collectionClass="NSMutableArray" id="YBB-ft-UIy"/>
+                        <outletCollection property="playButton" destination="PUG-1a-DSR" collectionClass="NSMutableArray" id="qgr-sQ-75P"/>
+                        <outletCollection property="playButton" destination="JfZ-3C-qqb" collectionClass="NSMutableArray" id="Z87-nG-BTK"/>
+                        <outletCollection property="playButton" destination="vT6-Q8-Pru" collectionClass="NSMutableArray" id="sfM-TS-uN3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3z-ON-hDK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
