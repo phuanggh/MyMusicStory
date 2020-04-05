@@ -30,7 +30,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="140"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screenshot" translatesAutoresizingMaskIntoConstraints="NO" id="JmL-QM-Jkt">
-                                                            <rect key="frame" x="0.0" y="0.0" width="140.00000000000011" height="140"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="140" id="2aG-zM-dPs"/>
                                                                 <constraint firstAttribute="height" constant="140" id="FUz-4O-EV2"/>
