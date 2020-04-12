@@ -138,13 +138,18 @@ extension IGVCViewController: UITableViewDelegate, UITableViewDataSource {
         // Post text
         cell.postText.text = post.node.edge_media_to_caption?.edges[0].node.text
 
-        // Timestamp
+        // Post timestamp
         let timestamp = post.node.taken_at_timestamp
         let postTime = Date(timeIntervalSince1970: timestamp!)
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy MMMM dd"
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale = Locale.current
+//        dateFormatter.dateFormat = "yyyy MMMM dd"
+        
         let dateString = dateFormatter.string(from: postTime)
-
+        print("date string: \(dateString)")
+        
         cell.postTimeLabel.text = " \(dateString)"
         
         // Post Image
