@@ -50,18 +50,20 @@ class IGVCViewController: UIViewController {
     func updateUI() {
 
         followerLabel.text = followerNumConverter(igData.graphql.user.edge_followed_by.count)
-//            String(igData.graphql.user.edge_followed_by.count)
         fullNameLabel.text = " \(igData.graphql.user.full_name)"
         biographyTextView.text = igData.graphql.user.biography
         NumOfPostLabel.text = String( igData.graphql.user.edge_owner_to_timeline_media.count)
-        
-        do {
-            let imageData = try Data(contentsOf: igData.graphql.user.profile_pic_url_hd)
-            proPicImageView.image = UIImage(data: imageData)
-        } catch {
-            print("imageData Error")
-        }
-        
+        updateImage(url: igData.graphql.user.profile_pic_url_hd, imageView: proPicImageView)
+    }
+    
+    func updateImage(url: URL, imageView: UIImageView) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data, let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    imageView.image = image
+                }
+            }
+        }.resume()
     }
     
     func followerNumConverter(_ num: Int) -> String{
@@ -148,32 +150,18 @@ extension IGVCViewController: UITableViewDelegate, UITableViewDataSource {
 //        dateFormatter.dateFormat = "yyyy MMMM dd"
         
         let dateString = dateFormatter.string(from: postTime)
-        print("date string: \(dateString)")
+//        print("date string: \(dateString)")
         
         cell.postTimeLabel.text = " \(dateString)"
         
         // Post Image
-        let postImageURL = post.node.thumbnail_src
-        URLSession.shared.dataTask(with: postImageURL!) { (data, response, error) in
-            if let data = data, let postImage = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    cell.postImageView.image = postImage
-                }
-            } else {
-                print("postImageURL goes wrong")
-            }
-        }.resume()
+        if let postImageURL = post.node.thumbnail_src {
+            updateImage(url: postImageURL, imageView: cell.postImageView)
+        }
         
         // Pro pic image
         let proPicURL = igData.graphql.user.profile_pic_url_hd
-        URLSession.shared.dataTask(with: proPicURL) {
-            (data, response, error) in
-            if let data = data, let proPicImage = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    cell.proPicImageView.image = proPicImage
-                }
-            }
-        }.resume()
+        updateImage(url: proPicURL, imageView: cell.proPicImageView)
         
         
         return cell
