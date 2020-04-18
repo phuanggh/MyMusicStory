@@ -11,6 +11,8 @@ import AVFoundation
 
 class MusicVC: UIViewController {
     
+    var songs = [SongType]()
+    
     var player = AVPlayer()
     var playerItem: AVPlayerItem!
     var timeObserverToken: Any?
@@ -39,6 +41,27 @@ class MusicVC: UIViewController {
     @IBOutlet var playButton: [UIButton]!
     
     
+    // MARK: - Download Data
+    func fetchITuneData(){
+        let urlStr = "https://itunes.apple.com/search?term=taylorswift&media=music"
+        if let url = URL(string: urlStr) {
+//            print("Data: \(url)")
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                
+                if let data = data, let iTuneData = try? JSONDecoder().decode(SongResults.self, from: data) {
+                    
+                    self.songs = iTuneData.results
+//                    print(data)
+
+                    self.playMusic()
+                }
+                
+            }.resume()
+        }
+    }
+    
+    
+    
     // MARK: - Volume Setting
 
     @IBAction func volumeButtonPressed(_ sender: UIButton) {
@@ -60,7 +83,8 @@ class MusicVC: UIViewController {
             
         case 1:
             if songIndex == 0 {
-                songIndex = SongData.songList.count - 1
+//                songIndex = SongData.songList.count - 1
+                songIndex = songs.count - 1
             } else {
                 songIndex -= 1
             }
@@ -74,6 +98,7 @@ class MusicVC: UIViewController {
             isPlaying = !isPlaying
 
         case 3:
+//            if songIndex == SongData.songList.count - 1 {
             if songIndex == SongData.songList.count - 1 {
                 songIndex = 0
             } else {
@@ -91,21 +116,49 @@ class MusicVC: UIViewController {
     
     func playMusic() {
         removePeriodicTimeObserver()
-        guard let fileURL = Bundle.main.url(forResource: SongData.songList[songIndex].name, withExtension: "mp3") else { return }
-        playerItem = AVPlayerItem(url: fileURL)
+        
+        let songURL = songs[songIndex].previewUrl
+        
+        
+//        guard let fileURL = Bundle.main.url(forResource: SongData.songList[songIndex].name, withExtension: "mp3") else { return }
+        playerItem = AVPlayerItem(url: songURL)
         player.replaceCurrentItem(with: playerItem)
         player.play()
         
-        updateInfo()
+        DispatchQueue.main.async {
+            self.updateInfo()
+            self.updateImage()
+        }
+        
         addPeriodicTimeObserver()
         
     }
     
     func updateInfo() {
-        let currentSong = SongData.songList[songIndex]
-        songImageView.image = UIImage(named: currentSong.name)
-        songNameLabel.text = currentSong.name
-        artistLabel.text = currentSong.artist
+//        let currentSong = SongData.songList[songIndex]
+        let currentSong = songs[songIndex]
+//        songImageView.image = UIImage(named: currentSong.name)
+//        songImageView.image = UIImage(named: currentSong.artworkUrl100)
+        songNameLabel.text = currentSong.trackName
+        artistLabel.text = currentSong.artistName
+    }
+    
+    func updateImage() {
+        var urlStr = songs[songIndex].artworkUrl100
+        urlStr = urlStr.replacingOccurrences(of: "100x100", with: "1000x1000")
+        if let url = URL(string: urlStr) {
+            URLSession.shared.dataTask(with: url) {
+                data, response, error in
+                
+                if let data = data {
+                    DispatchQueue.main.async {
+                        self.songImageView.image = UIImage(data: data)
+                    }
+                }
+                
+            }.resume()
+        }
+        
     }
     
     
@@ -173,8 +226,8 @@ class MusicVC: UIViewController {
 
         view.layer.insertSublayer(gradient, at: 0)
         
-        
-        playMusic()
+        fetchITuneData()
+//        playMusic()
         NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: .main) { [weak self] (notification) in
 
             if self?.songIndex == SongData.songList.count - 1 {

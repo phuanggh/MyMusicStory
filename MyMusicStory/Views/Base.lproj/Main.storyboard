@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pda-XG-MPG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
@@ -11,7 +11,7 @@
         <!--News-->
         <scene sceneID="rB4-UM-pZy">
             <objects>
-                <viewController id="oy4-iW-7gl" customClass="IGVCViewController" customModule="MyMusicStory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="oy4-iW-7gl" customClass="IGVC" customModule="MyMusicStory" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9KQ-S7-9X2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,6 +31,7 @@
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zWs-Ls-be8">
                                                             <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                            <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="90" id="CjR-U0-bNO"/>
                                                                 <constraint firstAttribute="width" secondItem="zWs-Ls-be8" secondAttribute="height" multiplier="1:1" id="f7d-o2-jkr"/>
@@ -418,7 +419,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfi-X9-0BN">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfi-X9-0BN">
                                                     <rect key="frame" x="20" y="13.666666666666664" width="21" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="1tr-1R-9XR"/>
@@ -467,6 +468,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Music" id="C0j-or-XKX"/>
                     <connections>
+                        <outlet property="artistLabel" destination="UKZ-Jd-mZ2" id="wqG-mv-d37"/>
                         <outlet property="tableview" destination="O3c-Bv-6QE" id="zQq-lk-9AE"/>
                         <outletCollection property="musicButton" destination="taK-lL-13d" collectionClass="NSMutableArray" id="KbI-bc-e6Q"/>
                         <outletCollection property="musicButton" destination="j12-s0-0md" collectionClass="NSMutableArray" id="aLD-fo-Q2I"/>
@@ -475,7 +477,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="545" y="106"/>
+            <point key="canvasLocation" x="544.92753623188412" y="105.80357142857143"/>
         </scene>
         <!--MusicVC-->
         <scene sceneID="OZI-Nr-MDC">

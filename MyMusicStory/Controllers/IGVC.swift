@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IGVCViewController: UIViewController {
+class IGVC: UIViewController {
     
     
     var igData: IGData!
@@ -77,25 +77,25 @@ class IGVCViewController: UIViewController {
     }
     
 
-    func testIGData() {
-        guard let data = NSDataAsset(name: "igData")?.data else {
-           print("data not exist")
-           return
-        }
-        do {
-           let decoder = JSONDecoder()
-           let result = try decoder.decode(IGData.self, from: data)
-           print(result)
-        } catch  {
-           print(error)
-        }
-    }
+//    func testGetSongs() {
+//        guard let data = NSDataAsset(name: "ituneData")?.data else {
+//           print("data not exist")
+//           return
+//        }
+//        do {
+//           let decoder = JSONDecoder()
+//           let result = try decoder.decode(SongResults.self, from: data)
+//           print(result)
+//        } catch  {
+//           print(error)
+//        }
+//    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        testIGData()
+//        testGetSongs()
         fetchIGData()
         
         proPicImageView.layer.cornerRadius = proPicImageView.frame.height / 2
@@ -117,7 +117,7 @@ class IGVCViewController: UIViewController {
 
 // MARK: - TableView
 
-extension IGVCViewController: UITableViewDelegate, UITableViewDataSource {
+extension IGVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
