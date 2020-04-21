@@ -10,7 +10,6 @@ import UIKit
 
 class PlaylistVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var iTuneData: SongResults?
     var songs = [SongType]()
     
     var songIndex: Int?
@@ -21,29 +20,6 @@ class PlaylistVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var artistLabel: UILabel!
     
-    
-    // MARK: - Download Data
-//    func fetchITuneData(){
-//        let urlStr = "https://itunes.apple.com/search?term=taylorswift&media=music"
-//        if let url = URL(string: urlStr) {
-//            print("Data: \(url)")
-//            URLSession.shared.dataTask(with: url) { data, response, error in
-//
-//
-//                if let data = data, let iTuneData = try? JSONDecoder().decode(SongResults.self, from: data) {
-//
-//                    self.songs = iTuneData.results
-//
-//                    DispatchQueue.main.async {
-//                        self.tableview.reloadData()
-//                    }
-//                }
-//
-//            }.resume()
-//        }
-//    }
-    
-
     
     // MARK: - Table View
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,7 +67,6 @@ class PlaylistVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        fetchITuneData()
         ITuneController.shared.fetchITuneData { (songs) in
             self.songs = songs!
             DispatchQueue.main.async {

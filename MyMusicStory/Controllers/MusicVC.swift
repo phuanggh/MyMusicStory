@@ -113,23 +113,25 @@ class MusicVC: UIViewController {
     func playMusic() {
         removePeriodicTimeObserver()
         
+        // Plau music
         let songURL = songs[songIndex].previewUrl
-        
         playerItem = AVPlayerItem(url: songURL)
         player.replaceCurrentItem(with: playerItem)
         player.play()
         
+        // Update song info
         DispatchQueue.main.async {
             self.updateInfo()
-//            self.updateImage()
         }
         
+        // Update song image
         ITuneController.shared.fetchImage(urlStr: songs[songIndex].artworkUrl100) { (image) in
             DispatchQueue.main.async {
                 self.songImageView.image = image
             }
         }
         
+        // Time observer
         addPeriodicTimeObserver()
         
     }
@@ -139,29 +141,6 @@ class MusicVC: UIViewController {
         songNameLabel.text = currentSong.trackName
         artistLabel.text = currentSong.artistName
     }
-    
-//    func updateImage() {
-////        var urlStr = songs[songIndex].artworkUrl100
-////        urlStr = urlStr.replacingOccurrences(of: "100x100", with: "1000x1000")
-////        if let url = URL(string: urlStr) {
-////            URLSession.shared.dataTask(with: url) {
-////                data, response, error in
-////
-////                if let data = data {
-////                    DispatchQueue.main.async {
-////                        self.songImageView.image = UIImage(data: data)
-////                    }
-////                }
-////
-////            }.resume()
-////        }
-//        ITuneController.shared.fetchImage(urlStr: songs[songIndex].artworkUrl100) { (image) in
-//            DispatchQueue.main.async {
-//                self.songImageView.image = image
-//            }
-//        }
-//
-//    }
     
     
     // MARK: - Music Progress
@@ -230,7 +209,6 @@ class MusicVC: UIViewController {
         view.layer.insertSublayer(gradient, at: 0)
         
         // Download data
-//        fetchITuneData()
         ITuneController.shared.fetchITuneData { (songs) in
             self.songs = songs!
             self.playMusic()
