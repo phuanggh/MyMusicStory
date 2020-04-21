@@ -45,13 +45,11 @@ class MusicVC: UIViewController {
     func fetchITuneData(){
         let urlStr = "https://itunes.apple.com/search?term=taylorswift&media=music"
         if let url = URL(string: urlStr) {
-//            print("Data: \(url)")
             URLSession.shared.dataTask(with: url) { data, response, error in
                 
                 if let data = data, let iTuneData = try? JSONDecoder().decode(SongResults.self, from: data) {
                     
                     self.songs = iTuneData.results
-//                    print(data)
 
                     self.playMusic()
                 }
@@ -83,7 +81,6 @@ class MusicVC: UIViewController {
             
         case 1:
             if songIndex == 0 {
-//                songIndex = SongData.songList.count - 1
                 songIndex = songs.count - 1
             } else {
                 songIndex -= 1
@@ -98,7 +95,6 @@ class MusicVC: UIViewController {
             isPlaying = !isPlaying
 
         case 3:
-//            if songIndex == SongData.songList.count - 1 {
             if songIndex == SongData.songList.count - 1 {
                 songIndex = 0
             } else {
@@ -119,15 +115,19 @@ class MusicVC: UIViewController {
         
         let songURL = songs[songIndex].previewUrl
         
-        
-//        guard let fileURL = Bundle.main.url(forResource: SongData.songList[songIndex].name, withExtension: "mp3") else { return }
         playerItem = AVPlayerItem(url: songURL)
         player.replaceCurrentItem(with: playerItem)
         player.play()
         
         DispatchQueue.main.async {
             self.updateInfo()
-            self.updateImage()
+//            self.updateImage()
+        }
+        
+        ITuneController.shared.fetchImage(urlStr: songs[songIndex].artworkUrl100) { (image) in
+            DispatchQueue.main.async {
+                self.songImageView.image = image
+            }
         }
         
         addPeriodicTimeObserver()
@@ -135,31 +135,33 @@ class MusicVC: UIViewController {
     }
     
     func updateInfo() {
-//        let currentSong = SongData.songList[songIndex]
         let currentSong = songs[songIndex]
-//        songImageView.image = UIImage(named: currentSong.name)
-//        songImageView.image = UIImage(named: currentSong.artworkUrl100)
         songNameLabel.text = currentSong.trackName
         artistLabel.text = currentSong.artistName
     }
     
-    func updateImage() {
-        var urlStr = songs[songIndex].artworkUrl100
-        urlStr = urlStr.replacingOccurrences(of: "100x100", with: "1000x1000")
-        if let url = URL(string: urlStr) {
-            URLSession.shared.dataTask(with: url) {
-                data, response, error in
-                
-                if let data = data {
-                    DispatchQueue.main.async {
-                        self.songImageView.image = UIImage(data: data)
-                    }
-                }
-                
-            }.resume()
-        }
-        
-    }
+//    func updateImage() {
+////        var urlStr = songs[songIndex].artworkUrl100
+////        urlStr = urlStr.replacingOccurrences(of: "100x100", with: "1000x1000")
+////        if let url = URL(string: urlStr) {
+////            URLSession.shared.dataTask(with: url) {
+////                data, response, error in
+////
+////                if let data = data {
+////                    DispatchQueue.main.async {
+////                        self.songImageView.image = UIImage(data: data)
+////                    }
+////                }
+////
+////            }.resume()
+////        }
+//        ITuneController.shared.fetchImage(urlStr: songs[songIndex].artworkUrl100) { (image) in
+//            DispatchQueue.main.async {
+//                self.songImageView.image = image
+//            }
+//        }
+//
+//    }
     
     
     // MARK: - Music Progress
@@ -216,6 +218,7 @@ class MusicVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // UI design
         let colour1 = #colorLiteral(red: 0.924761951, green: 0.2762447596, blue: 0.4667485952, alpha: 1).cgColor
         let colour2 = #colorLiteral(red: 0.3803921569, green: 0.2901960784, blue: 0.8274509804, alpha: 1).cgColor
         let colour3 = #colorLiteral(red: 0.07058823529, green: 0.1058823529, blue: 0.4549019608, alpha: 1).cgColor
@@ -226,8 +229,14 @@ class MusicVC: UIViewController {
 
         view.layer.insertSublayer(gradient, at: 0)
         
-        fetchITuneData()
-//        playMusic()
+        // Download data
+//        fetchITuneData()
+        ITuneController.shared.fetchITuneData { (songs) in
+            self.songs = songs!
+            self.playMusic()
+        }
+        
+        // AV Player
         NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: .main) { [weak self] (notification) in
 
             if self?.songIndex == SongData.songList.count - 1 {

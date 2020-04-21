@@ -23,42 +23,36 @@ class PlaylistVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     // MARK: - Download Data
-    func fetchITuneData(){
-        let urlStr = "https://itunes.apple.com/search?term=taylorswift&media=music"
-        if let url = URL(string: urlStr) {
-            print("Data: \(url)")
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                
-                
-                if let data = data, let iTuneData = try? JSONDecoder().decode(SongResults.self, from: data) {
-                    
-//                    self.iTuneData = iTuneData
-                    self.songs = iTuneData.results
-//                    print(data)
-                    DispatchQueue.main.async {
-                        self.tableview.reloadData()
-                    }
-                }
-                
-            }.resume()
-        }
-    }
-    
-//    func updateUI(){
+//    func fetchITuneData(){
+//        let urlStr = "https://itunes.apple.com/search?term=taylorswift&media=music"
+//        if let url = URL(string: urlStr) {
+//            print("Data: \(url)")
+//            URLSession.shared.dataTask(with: url) { data, response, error in
 //
+//
+//                if let data = data, let iTuneData = try? JSONDecoder().decode(SongResults.self, from: data) {
+//
+//                    self.songs = iTuneData.results
+//
+//                    DispatchQueue.main.async {
+//                        self.tableview.reloadData()
+//                    }
+//                }
+//
+//            }.resume()
+//        }
 //    }
     
+
     
     // MARK: - Table View
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return SongData.songList.count
         return songs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath) as! SongCell
         cell.numberLabel.text = String( indexPath.row + 1)
-//        cell.songNameLabel.text = SongData.songList[indexPath.row].name
         cell.songNameLabel.text = songs[indexPath.row].trackName
         
         return cell
@@ -77,7 +71,6 @@ class PlaylistVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if sender.tag == 1 {
             songIndex = 0
         } else {
-//            songIndex = Int.random(in: 0 ... SongData.songList.count-1)
             songIndex = Int.random(in: 0 ... songs.count-1)
         }
         performSegue(withIdentifier: "goToMusic", sender: self)
@@ -98,7 +91,13 @@ class PlaylistVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchITuneData()
+//        fetchITuneData()
+        ITuneController.shared.fetchITuneData { (songs) in
+            self.songs = songs!
+            DispatchQueue.main.async {
+                self.tableview.reloadData()
+            }
+        }
         
         musicButton[0].layer.cornerRadius = musicButton[0].frame.height / 4
         musicButton[1].layer.cornerRadius = musicButton[1].frame.height / 4

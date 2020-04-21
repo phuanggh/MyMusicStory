@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--News-->
+        <!--Instagram-->
         <scene sceneID="rB4-UM-pZy">
             <objects>
                 <viewController id="oy4-iW-7gl" customClass="IGVC" customModule="MyMusicStory" customModuleProvider="target" sceneMemberID="viewController">
@@ -243,7 +243,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hPV-dg-Tac"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="News" id="1qm-jX-Xn5"/>
+                    <tabBarItem key="tabBarItem" title="Instagram" image="instagram" id="1qm-jX-Xn5"/>
                     <connections>
                         <outlet property="NumOfPostLabel" destination="73J-7o-GFD" id="YGj-gB-PvM"/>
                         <outlet property="biographyTextView" destination="fp2-x0-9Pe" id="UyT-2V-gnk"/>
@@ -466,7 +466,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Music" id="C0j-or-XKX"/>
+                    <tabBarItem key="tabBarItem" title="Music" image="itunes" id="C0j-or-XKX"/>
                     <connections>
                         <outlet property="artistLabel" destination="UKZ-Jd-mZ2" id="wqG-mv-d37"/>
                         <outlet property="tableview" destination="O3c-Bv-6QE" id="zQq-lk-9AE"/>
@@ -719,6 +719,8 @@
         <image name="ellipsis.circle.fill" catalog="system" width="64" height="60"/>
         <image name="forward.fill" catalog="system" width="64" height="38"/>
         <image name="icloud.and.arrow.down" catalog="system" width="64" height="56"/>
+        <image name="instagram" width="32" height="32"/>
+        <image name="itunes" width="32" height="32"/>
         <image name="pause.fill" catalog="system" width="58" height="64"/>
         <image name="play.fill" catalog="system" width="58" height="64"/>
         <image name="shuffle" catalog="system" width="64" height="46"/>
