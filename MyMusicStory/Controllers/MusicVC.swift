@@ -41,25 +41,6 @@ class MusicVC: UIViewController {
     @IBOutlet var playButton: [UIButton]!
     
     
-    // MARK: - Download Data
-    func fetchITuneData(){
-        let urlStr = "https://itunes.apple.com/search?term=taylorswift&media=music"
-        if let url = URL(string: urlStr) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                
-                if let data = data, let iTuneData = try? JSONDecoder().decode(SongResults.self, from: data) {
-                    
-                    self.songs = iTuneData.results
-
-                    self.playMusic()
-                }
-                
-            }.resume()
-        }
-    }
-    
-    
-    
     // MARK: - Volume Setting
 
     @IBAction func volumeButtonPressed(_ sender: UIButton) {
