@@ -76,7 +76,7 @@ class MusicVC: UIViewController {
             isPlaying = !isPlaying
 
         case 3:
-            if songIndex == SongData.songList.count - 1 {
+            if songIndex == songs.count - 1 {
                 songIndex = 0
             } else {
                 songIndex += 1
@@ -198,7 +198,7 @@ class MusicVC: UIViewController {
         // AV Player
         NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: .main) { [weak self] (notification) in
 
-            if self?.songIndex == SongData.songList.count - 1 {
+            if self?.songIndex == (self?.songs.count)! - 1 {
                 self?.songIndex = 0
             } else {
                 self?.songIndex += 1
