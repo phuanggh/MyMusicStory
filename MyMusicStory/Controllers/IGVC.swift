@@ -5,7 +5,6 @@
 //  Created by Penny Huang on 2020/4/11.
 //  Copyright © 2020 Penny Huang. All rights reserved.
 //
-
 import UIKit
 
 class IGVC: UIViewController {
@@ -13,7 +12,6 @@ class IGVC: UIViewController {
     
     var igData: IGData!
     var igPosts = [IGData.Graphql.User.Edge_owner_to_timeline_media.Edges]()
-    
     
     @IBOutlet weak var proPicImageView: UIImageView!
     @IBOutlet weak var NumOfPostLabel: UILabel!
@@ -23,48 +21,34 @@ class IGVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     
-    
-    func fetchIGData() {
-        let urlStr = "https://www.instagram.com/taylorswift/?__a=1"
-        if let url = URL(string: urlStr) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                
-                if let data = data, let igData = try? JSONDecoder().decode(IGData.self, from: data) {
-                    
-                    self.igData = igData
-                    self.igPosts = igData.graphql.user.edge_owner_to_timeline_media.edges
-                    
-                    DispatchQueue.main.async {
-                        self.updateUI()
-                        self.tableView.reloadData()
-                    }
-                    
-                }
-                
-            }.resume()
-        }
-        
-    }
-    
-    
-    func updateUI() {
+    func updateProfileUI() {
 
         followerLabel.text = followerNumConverter(igData.graphql.user.edge_followed_by.count)
         fullNameLabel.text = " \(igData.graphql.user.full_name)"
         biographyTextView.text = igData.graphql.user.biography
         NumOfPostLabel.text = String( igData.graphql.user.edge_owner_to_timeline_media.count)
-        updateImage(url: igData.graphql.user.profile_pic_url_hd, imageView: proPicImageView)
+        
+        IGDataController.shared.updateImage(url: igData.graphql.user.profile_pic_url_hd) { result in
+            switch result {
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self.proPicImageView.image = image
+                }
+            case .failure(let networkError):
+                switch networkError {
+                case .invalidUrl, .invalidData, .invalidResponse:
+                    print(networkError)
+                case .requestFailed(let error):
+                    print(networkError, error)
+                default:
+                    print("Unidentified Error")
+                }
+            
+            }
+
+        }
     }
     
-    func updateImage(url: URL, imageView: UIImageView) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data, let image = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    imageView.image = image
-                }
-            }
-        }.resume()
-    }
     
     func followerNumConverter(_ num: Int) -> String{
         if num > 1000000 {
@@ -96,7 +80,24 @@ class IGVC: UIViewController {
         super.viewDidLoad()
         
 //        testGetSongs()
-        fetchIGData()
+        IGDataController.shared.fetchIGData { result in
+            switch result {
+            case .success(let igData):
+                self.igData = igData
+                self.igPosts = igData.graphql.user.edge_owner_to_timeline_media.edges
+                DispatchQueue.main.async {
+                    self.updateProfileUI()
+                    self.tableView.reloadData()
+                }
+            case .failure(let networkError):
+                switch networkError {
+                case .requestFailed(let error):
+                    print(networkError, error)
+                case .invalidUrl, .invalidData, .invalidResponse, .decodingError:
+                    print(networkError)
+                }
+            }
+        }
         
         proPicImageView.layer.cornerRadius = proPicImageView.frame.height / 2
         
@@ -110,13 +111,10 @@ class IGVC: UIViewController {
         view.layer.insertSublayer(gradient, at: 0)
 
     }
-    
-
 }
 
 
 // MARK: - TableView
-
 extension IGVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -156,13 +154,44 @@ extension IGVC: UITableViewDelegate, UITableViewDataSource {
         
         // Post Image
         if let postImageURL = post.node.thumbnail_src {
-            updateImage(url: postImageURL, imageView: cell.postImageView)
+            IGDataController.shared.updateImage(url: postImageURL) { (result) in
+                switch result {
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        cell.postImageView.image = image
+                    }
+                case .failure(let networkError):
+                    switch networkError {
+                    case .requestFailed(let error):
+                        print(networkError, error)
+                    case .invalidData, .invalidResponse:
+                        print(networkError)
+                    default:
+                        print("Unidentified Error")
+                    }
+                }
+            }
         }
         
         // Pro pic image
         let proPicURL = igData.graphql.user.profile_pic_url_hd
-        updateImage(url: proPicURL, imageView: cell.proPicImageView)
-        
+        IGDataController.shared.updateImage(url: proPicURL) { (result) in
+            switch result {
+            case .success(let image):
+                DispatchQueue.main.async {
+                    cell.proPicImageView.image = image
+                }
+            case .failure(let networkError):
+                switch networkError {
+                case .requestFailed(let error):
+                    print(networkError, error)
+                case .invalidData, .invalidResponse:
+                    print(networkError)
+                default:
+                    print("Unidentified Error")
+                }
+            }
+        }
         
         return cell
     }
