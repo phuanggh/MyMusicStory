@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class IGVC: UIViewController {
+class IGPostVC: UIViewController {
     
     
     var igData: IGData!
@@ -115,7 +115,7 @@ class IGVC: UIViewController {
 
 
 // MARK: - TableView
-extension IGVC: UITableViewDelegate, UITableViewDataSource {
+extension IGPostVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 

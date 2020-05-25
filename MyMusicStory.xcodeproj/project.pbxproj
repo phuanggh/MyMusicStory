@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7A01EB1D244199EC00C1CF76 /* IGData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A01EB1C244199EC00C1CF76 /* IGData.swift */; };
-		7A01EB212441A5EE00C1CF76 /* IGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A01EB202441A5EE00C1CF76 /* IGVC.swift */; };
+		7A01EB212441A5EE00C1CF76 /* IGPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A01EB202441A5EE00C1CF76 /* IGPostVC.swift */; };
 		7A01EB23244221BC00C1CF76 /* IGPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A01EB22244221BC00C1CF76 /* IGPostCell.swift */; };
 		7A1D31BA2436293500E858C1 /* MusicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1D31B92436293500E858C1 /* MusicVC.swift */; };
 		7A1D31C024363B3500E858C1 /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1D31BF24363B3500E858C1 /* SongCell.swift */; };
@@ -18,12 +18,13 @@
 		7A1DDADB243089FF00F2D33E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1DDAD9243089FF00F2D33E /* Main.storyboard */; };
 		7A1DDADD24308A0100F2D33E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A1DDADC24308A0100F2D33E /* Assets.xcassets */; };
 		7A1DDAE024308A0100F2D33E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1DDADE24308A0100F2D33E /* LaunchScreen.storyboard */; };
+		7A7920E92479798200AB5D89 /* IGPicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7920E82479798200AB5D89 /* IGPicVC.swift */; };
 		7ACB4224244740C400B0EAC8 /* ITuneData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACB4223244740C400B0EAC8 /* ITuneData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7A01EB1C244199EC00C1CF76 /* IGData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGData.swift; sourceTree = "<group>"; };
-		7A01EB202441A5EE00C1CF76 /* IGVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGVC.swift; sourceTree = "<group>"; };
+		7A01EB202441A5EE00C1CF76 /* IGPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGPostVC.swift; sourceTree = "<group>"; };
 		7A01EB22244221BC00C1CF76 /* IGPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGPostCell.swift; sourceTree = "<group>"; };
 		7A1D31B92436293500E858C1 /* MusicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVC.swift; sourceTree = "<group>"; };
 		7A1D31BF24363B3500E858C1 /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
@@ -35,6 +36,7 @@
 		7A1DDADC24308A0100F2D33E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A1DDADF24308A0100F2D33E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7A1DDAE124308A0100F2D33E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A7920E82479798200AB5D89 /* IGPicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGPicVC.swift; sourceTree = "<group>"; };
 		7ACB4223244740C400B0EAC8 /* ITuneData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITuneData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,7 +63,8 @@
 			isa = PBXGroup;
 			children = (
 				7A1DDAD7243089FF00F2D33E /* PlaylistVC.swift */,
-				7A01EB202441A5EE00C1CF76 /* IGVC.swift */,
+				7A7920E82479798200AB5D89 /* IGPicVC.swift */,
+				7A01EB202441A5EE00C1CF76 /* IGPostVC.swift */,
 				7A1D31B92436293500E858C1 /* MusicVC.swift */,
 				7A1D31BF24363B3500E858C1 /* SongCell.swift */,
 				7A01EB22244221BC00C1CF76 /* IGPostCell.swift */,
@@ -180,10 +183,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A7920E92479798200AB5D89 /* IGPicVC.swift in Sources */,
 				7A01EB1D244199EC00C1CF76 /* IGData.swift in Sources */,
 				7A1DDAD8243089FF00F2D33E /* PlaylistVC.swift in Sources */,
 				7A1DDAD4243089FF00F2D33E /* AppDelegate.swift in Sources */,
-				7A01EB212441A5EE00C1CF76 /* IGVC.swift in Sources */,
+				7A01EB212441A5EE00C1CF76 /* IGPostVC.swift in Sources */,
 				7A1D31BA2436293500E858C1 /* MusicVC.swift in Sources */,
 				7A1D31C024363B3500E858C1 /* SongCell.swift in Sources */,
 				7A01EB23244221BC00C1CF76 /* IGPostCell.swift in Sources */,

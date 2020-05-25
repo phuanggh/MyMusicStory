@@ -128,9 +128,6 @@ struct IGDataController {
             guard let data = data, let image = UIImage(data: data) else {
                 completion(.failure(.invalidData))
                 return
-                // DispatchQueue.main.async {
-                //     imageView.image = image
-                // }
             }
             
             completion(.success(image))
