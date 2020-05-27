@@ -38,10 +38,10 @@ struct IGData: Codable {
             struct Edge_owner_to_timeline_media: Codable {
                 let count: Int // total number of posts
 //                // used to request more posts
-//                let page_info: Page_info
-//                struct Page_info: Codable {
-//                    let end_cursor: String
-//                }
+                let page_info: Page_info
+                struct Page_info: Codable {
+                    let end_cursor: String
+                }
                 // Latest 12 posts
                 let edges: [Edges]
                 struct Edges: Codable {

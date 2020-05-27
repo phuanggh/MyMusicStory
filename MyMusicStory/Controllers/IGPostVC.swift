@@ -12,6 +12,7 @@ class IGPostVC: UIViewController {
     
     var igData: IGData!
     var igPosts = [IGData.Graphql.User.Edge_owner_to_timeline_media.Edges]()
+    var indexPath: IndexPath!
     
     @IBOutlet weak var proPicImageView: UIImageView!
     @IBOutlet weak var NumOfPostLabel: UILabel!
@@ -79,25 +80,32 @@ class IGPostVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        print(indexPath)
+        updateProfileUI()
+//        tableView.reloadData()
+        
+        
+        
 //        testGetSongs()
-        IGDataController.shared.fetchIGData { result in
-            switch result {
-            case .success(let igData):
-                self.igData = igData
-                self.igPosts = igData.graphql.user.edge_owner_to_timeline_media.edges
-                DispatchQueue.main.async {
-                    self.updateProfileUI()
-                    self.tableView.reloadData()
-                }
-            case .failure(let networkError):
-                switch networkError {
-                case .requestFailed(let error):
-                    print(networkError, error)
-                case .invalidUrl, .invalidData, .invalidResponse, .decodingError:
-                    print(networkError)
-                }
-            }
-        }
+//        IGDataController.shared.fetchIGData { result in
+//            switch result {
+//            case .success(let igData):
+//                self.igData = igData
+//                self.igPosts = igData.graphql.user.edge_owner_to_timeline_media.edges
+//                DispatchQueue.main.async {
+//                    self.updateProfileUI()
+//                    self.tableView.reloadData()
+//                    self.tableView.scrollToRow(at: self.indexPath, at: .top, animated: false)
+//                }
+//            case .failure(let networkError):
+//                switch networkError {
+//                case .requestFailed(let error):
+//                    print(networkError, error)
+//                case .invalidUrl, .invalidData, .invalidResponse, .decodingError:
+//                    print(networkError)
+//                }
+//            }
+//        }
         
         proPicImageView.layer.cornerRadius = proPicImageView.frame.height / 2
         
@@ -111,6 +119,12 @@ class IGPostVC: UIViewController {
         view.layer.insertSublayer(gradient, at: 0)
 
     }
+    override func viewDidLayoutSubviews(){
+        super.viewDidLayoutSubviews()
+        tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+    }
+        
+    
 }
 
 
