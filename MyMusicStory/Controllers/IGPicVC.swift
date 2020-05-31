@@ -97,6 +97,14 @@ class IGPicVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         return reusableView
     }
     
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//
+//        let indexPath = IndexPath(row: 0, section: section)
+//        let headerView = self.collectionView(collectionView, viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionHeader, at: indexPath)
+//
+//        return headerView.systemLayoutSizeFitting(CGSize(width: collectionView.frame.width, height: UIView.layoutFittingExpandedSize.height))
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: PropertyKeys.toIGpostVC, sender: indexPath)
     }
@@ -154,6 +162,11 @@ class IGPicVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     
     func setBackground() {
         
+        let image = UIImage()
+
+        self.navigationController?.navigationBar.setBackgroundImage(image, for: .default)
+        self.navigationController?.navigationBar.shadowImage = image
+        
         let colour1 = #colorLiteral(red: 0.3803921569, green: 0.2901960784, blue: 0.8274509804, alpha: 1).cgColor
         let colour2 = #colorLiteral(red: 0.924761951, green: 0.2762447596, blue: 0.4667485952, alpha: 1).cgColor
         let gradient = CAGradientLayer()
@@ -170,7 +183,7 @@ class IGPicVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         let flowLayout = UICollectionViewFlowLayout()
         
         // Header
-        flowLayout.headerReferenceSize = CGSize(width: view.frame.width, height: 200)
+        flowLayout.headerReferenceSize = CGSize(width: view.frame.width, height: 160)
 //        collectionViewOutlet.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PropertyKeys.header)
     
         // Cell
