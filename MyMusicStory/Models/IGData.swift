@@ -33,6 +33,7 @@ struct IGData: Codable {
             let profile_pic_url_hd: URL
             let biography: String
 
+            
             // Post
             let edge_owner_to_timeline_media: Edge_owner_to_timeline_media
             struct Edge_owner_to_timeline_media: Codable {
@@ -136,7 +137,7 @@ struct IGDataController {
     }
     
     func testGetData(completion: (IGData?) -> ()) {
-        guard let data = NSDataAsset(name: "response")?.data else {
+        guard let data = NSDataAsset(name: "response1")?.data else {
            print("data not exist")
            return
         }
