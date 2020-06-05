@@ -156,7 +156,10 @@ class IGPicVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         super.viewDidLoad()
         setCollectionViewLayout()
         setBackground()
-        getIGData()
+//        getIGData()
+        IGDataController.shared.testGetData { (igdata) in
+            
+        }
 
     }
     
