@@ -1,5 +1,6 @@
 # My Music Story
 It was originally made as a music player but later modified to become a hub of multiple channels, allowing user to get the latest Instasgram posts and the most populart songs of Taylor Swift.
+<br>
 The latest version consists of two parts: music player and Instagram.
 Music play is an imitation of Apple Music App, having full playing functions.
 Instagram part is an imitation of Instagram, able to display user profile and latest pictures. It goes to the full post (including post description, post time, and number of likes) when clicking a picture, like current Intagram does.
