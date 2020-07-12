@@ -13,7 +13,7 @@ Music play is an imitation of Apple Music App, having full playing functions. In
 <li>Get Instagram posts and user info through Instagram API</li>
 <li>Go to the exact post user click</li>
 </ul>
-### Medium Articles
+<h3 class="code-line" data-line-start=0 data-line-end=1 ><a id="Medium_Articles_0"></a>Medium Articles</h3>
 <p class="has-line-data" data-line-start="1" data-line-end="8">For more details about this app, please see Medium articles:<br>
 <a href="https://medium.com/%E5%BD%BC%E5%BE%97%E6%BD%98%E7%9A%84-swift-ios-app-%E9%96%8B%E7%99%BC%E6%95%99%E5%AE%A4/swift-%E7%B7%B4%E7%BF%92-music-app-1-stack-view-auto-layout-d6b5aa649a74">Music App #1 Stack View, Auto Layout</a><br>
 <a href="https://medium.com/%E5%BD%BC%E5%BE%97%E6%BD%98%E7%9A%84-swift-ios-app-%E9%96%8B%E7%99%BC%E6%95%99%E5%AE%A4/swift-%E7%B7%B4%E7%BF%92-music-app-2-avplayer-fa6f6d37c94d">Music App #2 AVPlayer</a><br>
