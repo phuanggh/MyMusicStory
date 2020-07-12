@@ -5,6 +5,14 @@ The latest version consists of two parts: music player and Instagram.
 <br>
 Music play is an imitation of Apple Music App, having full playing functions. Instagram part is an imitation of Instagram, able to display user profile and latest pictures. It goes to the full post (including post description, post time, and number of likes) when clicking a picture, like current Intagram does.
 <br>
+<ul>
+<li>Fit the screen sizes of iPhone SE and later</li>
+<li>Play music, including shuffle, next, previous, pause, start, and auto play the next one functions</li>
+<li>Play music that is stored in the app</li>
+<li>Get music list and play music through iTune API</li>
+<li>Get Instagram posts and user info through Instagram API</li>
+<li>Go to the exact post user click</li>
+</ul>
 <br>
 For more details about this app, please see Medium articles:
 <br>
@@ -19,15 +27,6 @@ For more details about this app, please see Medium articles:
 [Music App #5 Result Type, Error Handling](https://medium.com/%E5%BD%BC%E5%BE%97%E6%BD%98%E7%9A%84-swift-ios-app-%E9%96%8B%E7%99%BC%E6%95%99%E5%AE%A4/swift-%E7%B7%B4%E7%BF%92-music-app-5-result-type-error-handling-56a9597a5945)
 <br>
 [Music App #6 Collection View, Table View scrollToRow, Navigation Bar Colour](https://medium.com/%E5%BD%BC%E5%BE%97%E6%BD%98%E7%9A%84-swift-ios-app-%E9%96%8B%E7%99%BC%E6%95%99%E5%AE%A4/swift-%E7%B7%B4%E7%BF%92-music-app-6-collection-view-table-view-scrolltorow-4ea6e4c39850)
-
-<ul>
-<li>Fit the screen sizes of iPhone SE and later</li>
-<li>Play music, including shuffle, next, previous, pause, start, and auto play the next one functions</li>
-<li>Play music that is stored in the app</li>
-<li>Get music list and play music through iTune API</li>
-<li>Get Instagram posts and user info through Instagram API</li>
-<li>Go to the exact post user click</li>
-</ul>
 <h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="Demo_0"></a>Demo</h1>
 <h3 class="code-line" data-line-start=1 data-line-end=2 ><a id="Instagram_1"></a>Instagram</h3>
 <p class="has-line-data" data-line-start="2" data-line-end="3"><img src="DemoImages/MusicAppDemo-1.gif" alt="image"></p>
