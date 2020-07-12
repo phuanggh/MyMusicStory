@@ -14,10 +14,10 @@ Music play is an imitation of Apple Music App, having full playing functions. In
 <li>Go to the exact post user click</li>
 </ul>
 <h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="Demo_0"></a>Demo</h1>
-<h4 class="code-line" data-line-start=1 data-line-end=2 ><a id="Instagram_1"></a>Instagram</h4>
+<h3 class="code-line" data-line-start=1 data-line-end=2 ><a id="Instagram_1"></a>Instagram</h3>
 <p class="has-line-data" data-line-start="2" data-line-end="3"><img src="DemoImages/MusicAppDemo-1.gif" alt="image"></p>
-<h4 class="code-line" data-line-start=3 data-line-end=4 ><a id="iTune_3"></a>iTune</h4>
+<h3 class="code-line" data-line-start=3 data-line-end=4 ><a id="iTune_3"></a>iTune</h3>
 <p class="has-line-data" data-line-start="4" data-line-end="5"><img src="DemoImages/MusicAppDemo-3.gif" alt="image"></p>
-<h4 class="code-line" data-line-start=5 data-line-end=6 ><a id="Different_Screen_Sizes_5"></a>Different Screen Sizes</h4>
+<h3 class="code-line" data-line-start=5 data-line-end=6 ><a id="Different_Screen_Sizes_5"></a>Different Screen Sizes</h3>
 <p class="has-line-data" data-line-start="6" data-line-end="7"><img src="DemoImages/MusicAppDemo-4.png" alt="image"></p>
 
