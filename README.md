@@ -1,5 +1,5 @@
 # My Music Story
-It was originally made as a music player but later modified to become a hub of multiple channels, allowing user to get the latest Instagram posts and the most populart songs of Taylor Swift.
+It was originally made as a music player but later modified to become a hub of multiple channels, allowing user to get the latest Instagram posts and the most popular songs of Taylor Swift.
 <br>
 The latest version consists of two parts: music player and Instagram.
 <br>
