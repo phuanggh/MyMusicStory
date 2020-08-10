@@ -141,7 +141,7 @@ extension IGPostVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "igPostCell", for: indexPath) as! IGPostCell
         
         let post = igPosts[indexPath.row]
-        
+        print(post.node.edge_media_to_caption?.edges.count)
         // Username
         cell.userNameLabel.text = igData.graphql.user.username
 
@@ -150,7 +150,13 @@ extension IGPostVC: UITableViewDelegate, UITableViewDataSource {
         cell.likeLabel.text = " \(likes!) likes"
         
         // Post text
-        cell.postText.text = post.node.edge_media_to_caption?.edges[0].node.text
+        /* fix on 2020 August 10
+         Error: out of range
+         Reason: edges is an empty array when post description is empty
+         
+        */
+        cell.postText.text = post.node.edge_media_to_caption?.edges.count != 0 ? post.node.edge_media_to_caption?.edges[0].node.text : ""
+        
 
         // Post timestamp
         let timestamp = post.node.taken_at_timestamp
