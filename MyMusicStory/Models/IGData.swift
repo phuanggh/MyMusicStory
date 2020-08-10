@@ -100,6 +100,8 @@ struct IGDataController {
                 completion(.failure(.invalidData))
                 return
             }
+            
+//            String(data: data, encoding: .utf8)
 
             do {
                 let igData = try JSONDecoder().decode(IGData.self, from: data)

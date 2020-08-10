@@ -149,6 +149,7 @@ class IGPicVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         destinationVC.indexPath = sender
         destinationVC.igData = igData
         destinationVC.igPosts = igPosts
+//        print(igPosts)
     }
     
     // MARK: - View Did Load
